@@ -1,7 +1,7 @@
 {
-  "version": "4.44.0",
-  "file": "DeepcoreQuarry_v4.44.0.mcaddon",
+  "version": "4.44.1",
+  "file": "DeepcoreQuarry_v4.44.1.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "Easier On demand: each machine's On demand tab has a Keep list. Put in up to 3 items (the stack you put in is how many to keep, -/+ change it) and the machine keeps that many in the chest it touches or fills, with no Stock Upgrade needed. The tab shows each item's count, statuses say why it waits, and chained machines no longer spill into the chest."
+  "notes": "Easier On demand: each machine's On demand tab has a Keep list. Put in up to 3 items (the stack you put in is how many to keep, -/+ change it) and the machine keeps that many in the chest it touches or fills, with no Stock Upgrade needed. The tab shows each item's count, statuses say why it waits, and chained machines no longer spill into the chest. 4.44.1: a machine with a Keep list stops once it is stocked, even when its pipes also reach other machines or blocks."
 }
