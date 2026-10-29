@@ -1,7 +1,7 @@
 {
-  "version": "4.42.0",
-  "file": "DeepcoreQuarry_v4.42.0.mcaddon",
+  "version": "4.43.0",
+  "file": "DeepcoreQuarry_v4.43.0.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "Machines push output only into touching pipes whose side toward them is set to Input or Output."
+  "notes": "On demand machines send leftover inputs (loaded by hand, unusable, or left over) to a touching chest or a connected pipe, so they no longer clog the line."
 }
