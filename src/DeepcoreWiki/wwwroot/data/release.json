@@ -1,13 +1,13 @@
 {
-  "version": "4.44.1",
-  "file": "DeepcoreQuarry_v4.44.1.mcaddon",
+  "version": "4.45.0",
+  "file": "DeepcoreQuarry_v4.45.0.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "Easier On demand: each machine's On demand tab has a Keep list. Put in up to 3 items (the stack you put in is how many to keep, -/+ change it) and the machine keeps that many in the chest it touches or fills, with no Stock Upgrade needed. The tab shows each item's count, statuses say why it waits, and chained machines no longer spill into the chest. 4.44.1: a machine with a Keep list stops once it is stocked, even when its pipes also reach other machines or blocks.",
-  "tag": "v4.44.1",
-  "download": "https://github.com/baseballr/Deepcore/releases/download/v4.44.1/DeepcoreQuarry_v4.44.1.mcaddon",
-  "releasePage": "https://github.com/baseballr/Deepcore/releases/tag/v4.44.1",
+  "notes": "Network ordering, first test build. Network Cable joins crates, the new Deepcore Chest (54 slots), terminals and machines to a Network Core by touch. The new Order Processor's screen lists everything the network's machines can make: tap an item, then Make an amount or Keep an amount stocked. The network plans the steps (ingots to plates to gears), sends each one to a machine on the cable, and stores the results. Assemblers craft any crafting recipe an order needs, with no recipe to set. Every step takes the machine's normal time and power. The old On demand tab still works for now.",
+  "tag": "v4.45.0",
+  "download": "https://github.com/baseballr/Deepcore/releases/download/v4.45.0/DeepcoreQuarry_v4.45.0.mcaddon",
+  "releasePage": "https://github.com/baseballr/Deepcore/releases/tag/v4.45.0",
   "allReleases": "https://github.com/baseballr/Deepcore/releases",
-  "sizeBytes": 1544620,
+  "sizeBytes": 1569251,
   "date": "2026-10-29"
 }
