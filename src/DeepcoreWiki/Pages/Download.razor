@@ -1,0 +1,39 @@
+@page "/download"
+@inject WikiService Data
+
+<PageTitle>Download · Deepcore Wiki</PageTitle>
+<nav class="crumbs"><a href="">Home</a><span>›</span><span class="here">Download</span></nav>
+<h1>Download</h1>
+<p class="lead">This page always points at the newest release of Deepcore Quarry.</p>
+
+<DownloadPanel />
+
+<h2>Works on</h2>
+<table class="info-table">
+    <tr><th>Minecraft</th><td>Bedrock Edition <b>@Data.Release.Range</b></td></tr>
+    <tr><th>Add-on version</th><td>@Data.Release.Version</td></tr>
+    <tr><th>File</th><td>@Data.Release.File (@Data.Release.Size)</td></tr>
+    <tr><th>Older versions</th><td><a href="@Data.Release.AllReleases">All releases on GitHub</a></td></tr>
+</table>
+<p class="muted small">
+    The lowest version is set by the scripting API the add-on uses, the highest is the newest Minecraft it was tested on.
+    Newer Minecraft versions usually work too, but haven't been checked yet.
+</p>
+
+<h2>Install</h2>
+<ol class="plain-steps">
+    <li>Download the <b>.mcaddon</b> file above and open it. Minecraft imports both the behavior pack and the resource pack.</li>
+    <li>Edit your world, open <b>Behavior Packs</b>, and activate <b>Deepcore Quarry</b>. The resource pack is added with it.</li>
+    <li>No experiments or Beta APIs are needed: Deepcore only uses stable scripting APIs.</li>
+    <li>On a server, every player and the server need the same version.</li>
+</ol>
+
+<h2>Updating a world</h2>
+<p>Updates keep the same pack IDs, block and item IDs, and saved machine data, so you can drop the new version onto an existing world or server. Machines you already placed keep working.</p>
+
+<h2>Playing with UtilityCraft</h2>
+<p>Deepcore runs alongside UtilityCraft. The <a href="@ConverterLink">Power Converter</a> moves power between UtilityCraft and Deepcore cables.</p>
+
+@code {
+    string ConverterLink => Data.AllEntries.FirstOrDefault(e => e.Name.StartsWith("Power Converter"))?.Href ?? "wiki";
+}

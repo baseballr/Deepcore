@@ -1,0 +1,7 @@
+{
+  "version": "4.42.0",
+  "file": "DeepcoreQuarry_v4.42.0.mcaddon",
+  "minecraftMin": "26.30",
+  "minecraftMax": "26.60",
+  "notes": "Machines push output only into touching pipes whose side toward them is set to Input or Output."
+}

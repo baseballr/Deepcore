@@ -1,0 +1,69 @@
+@page "/"
+@inject WikiService Data
+
+<PageTitle>Deepcore Quarry Wiki</PageTitle>
+
+<nav class="crumbs"><span class="here">Home</span></nav>
+
+<section class="hero">
+    <h1>Deepcore Quarry Wiki</h1>
+    <p class="lead">
+        Everything in the Deepcore Quarry add-on for Minecraft Bedrock: the machines and the tiers they come in,
+        power and cables, item pipes and crates, the gear, and every crafting recipe. Generated straight from the
+        in-game Guide Book, so it always matches the latest release.
+    </p>
+    <div class="stats">
+        <div><b>@Data.Wiki.Stats.Topics</b><span>Topics</span></div>
+        <div><b>@Data.Wiki.Stats.Blocks</b><span>Blocks</span></div>
+        <div><b>@Data.Wiki.Stats.Items</b><span>Items</span></div>
+        <div><b>@Data.Wiki.Stats.Recipes</b><span>Recipes</span></div>
+    </div>
+    <div class="lineup"><img src="img/lineup.png" alt="Deepcore machines" /></div>
+</section>
+
+<DownloadPanel />
+
+<h2 class="section-title">Browse the wiki</h2>
+<div class="card-grid">
+    @foreach (var c in Data.Wiki.Categories)
+    {
+        <a class="card" href="@($"wiki/{c.Slug}")">
+            <div class="card-top">
+                <Icon Src="@c.Icon" Name="@c.Title" Size="36" />
+                <span class="pill">@c.Entries.Count @(c.Entries.Count == 1 ? "entry" : "entries")</span>
+            </div>
+            <div class="card-title">@c.Title</div>
+            <div class="card-text">@c.Blurb</div>
+            <div class="card-arrow">→</div>
+        </a>
+    }
+    <a class="card" href="recipes">
+        <div class="card-top">
+            <Icon Src="@Data.Wiki.Recipes.FirstOrDefault()?.Icon" Name="Recipes" Size="36" />
+            <span class="pill">@Data.Wiki.Recipes.Count recipes</span>
+        </div>
+        <div class="card-title">All recipes</div>
+        <div class="card-text">Every crafting table recipe in one searchable list.</div>
+        <div class="card-arrow">→</div>
+    </a>
+</div>
+
+<h2 class="section-title">Start here</h2>
+<ol class="steps">
+    <li>
+        <b>Make power</b>
+        <span>Hand-craft Iron Plates and Gears, build a Basic Machine Casing, then set up a <a href="@Link("Water Turbine")">Water Turbine</a> or <a href="@Link("Fuel Generator")">Fuel Generator</a> and run <a href="@Link("Power Cables")">Power Cables</a> from it.</span>
+    </li>
+    <li>
+        <b>Process resources</b>
+        <span>Add a <a href="@Link("Plate Press")">Plate Press</a>, <a href="@Link("Crusher")">Crusher</a> and <a href="@Link("Induction Smelter")">Induction Smelter</a>. Ore turns into dust, dust into ingots, and steel unlocks the next <a href="@Link("Tiers")">tier</a>.</span>
+    </li>
+    <li>
+        <b>Connect the network</b>
+        <span>Place a <a href="@Link("Quarry Controllers")">Quarry Controller</a> inside <a href="@Link("Boundary Marker")">Boundary Markers</a>, then carry its output with <a href="@Link("Item Pipes")">Item Pipes</a> into machines and <a href="@Link("Deep Storage Crates")">crates</a>.</span>
+    </li>
+</ol>
+
+@code {
+    string Link(string name) => Data.AllEntries.FirstOrDefault(e => e.Name == name)?.Href ?? "wiki";
+}

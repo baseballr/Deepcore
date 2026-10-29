@@ -1,0 +1,13 @@
+{
+  "version": "4.42.0",
+  "file": "DeepcoreQuarry_v4.42.0.mcaddon",
+  "minecraftMin": "26.30",
+  "minecraftMax": "26.60",
+  "notes": "Machines push output only into touching pipes whose side toward them is set to Input or Output.",
+  "tag": "v4.42.0",
+  "download": "https://github.com/baseballr/Deepcore/releases/download/v4.42.0/DeepcoreQuarry_v4.42.0.mcaddon",
+  "releasePage": "https://github.com/baseballr/Deepcore/releases/tag/v4.42.0",
+  "allReleases": "https://github.com/baseballr/Deepcore/releases",
+  "sizeBytes": 1537619,
+  "date": null
+}
