@@ -1,13 +1,13 @@
 {
-  "version": "4.45.0",
-  "file": "DeepcoreQuarry_v4.45.0.mcaddon",
+  "version": "4.45.1",
+  "file": "DeepcoreQuarry_v4.45.1.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "Network ordering, first test build. Network Cable joins crates, the new Deepcore Chest (54 slots), terminals and machines to a Network Core by touch. The new Order Processor's screen lists everything the network's machines can make: tap an item, then Make an amount or Keep an amount stocked. The network plans the steps (ingots to plates to gears), sends each one to a machine on the cable, and stores the results. Assemblers craft any crafting recipe an order needs, with no recipe to set. Every step takes the machine's normal time and power. The old On demand tab still works for now.",
-  "tag": "v4.45.0",
-  "download": "https://github.com/baseballr/Deepcore/releases/download/v4.45.0/DeepcoreQuarry_v4.45.0.mcaddon",
-  "releasePage": "https://github.com/baseballr/Deepcore/releases/tag/v4.45.0",
+  "notes": "Network ordering, first test build. Network Cable joins crates, the new Deepcore Chest (54 slots), terminals and machines to a Network Core by touch. The new Order Processor's screen lists everything the network's machines can make: tap an item, then Make an amount or Keep an amount stocked. The network plans the steps (ingots to plates to gears), sends each one to a machine on the cable, and stores the results. Assemblers craft any crafting recipe an order needs, with no recipe to set. Every step takes the machine's normal time and power. 4.45.1: the On demand tab is gone (network ordering replaces it; machines that had it on work normally again, Stock Upgrades still work), and the Network Terminal has a sort button that cycles most first, fewest first, name A to Z and name Z to A.",
+  "tag": "v4.45.1",
+  "download": "https://github.com/baseballr/Deepcore/releases/download/v4.45.1/DeepcoreQuarry_v4.45.1.mcaddon",
+  "releasePage": "https://github.com/baseballr/Deepcore/releases/tag/v4.45.1",
   "allReleases": "https://github.com/baseballr/Deepcore/releases",
-  "sizeBytes": 1569251,
+  "sizeBytes": 1567787,
   "date": "2026-10-29"
 }
