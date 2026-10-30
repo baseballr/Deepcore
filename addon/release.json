@@ -1,7 +1,7 @@
 {
-  "version": "4.45.2",
-  "file": "DeepcoreQuarry_v4.45.2.mcaddon",
+  "version": "4.46.0",
+  "file": "DeepcoreQuarry_v4.46.0.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "Network ordering, first test build. Network Cable joins crates, the new Deepcore Chest (54 slots), terminals and machines to a Network Core by touch. The new Network Crafter's screen (4.45.2; it was on the Order Processor before) lists everything the network's machines can make: tap an item, then Make an amount or Keep an amount stocked. The network plans the steps (ingots to plates to gears), sends each one to a machine on the cable, and stores the results. Assemblers craft any crafting recipe an order needs, with no recipe to set. Every step takes the machine's normal time and power. 4.45.1: the On demand tab is gone (network ordering replaces it; machines that had it on work normally again, Stock Upgrades still work), and the Network Terminal has a sort button that cycles most first, fewest first, name A to Z and name Z to A. 4.45.2: ordering moves to the new Network Crafter; Order Processors have no screen and just run orders (each powered one runs one at a time), and every Crafter shows the same order list."
+  "notes": "Fix: a Basic Item Vacuum, Chunk Loader, Mob Repeller or Lava Pump no longer shows an empty Range slot that refuses chips. Range Chips start at Steel, so on a Basic machine the slot shows as closed (\"Range Chips: Steel tier needed\") until you use a Steel Machine Upgrade, and a Range Chip dropped on its screen comes back with that reason. Also in this build (4.45.x): network ordering, first test build. Network Cable joins crates, the Deepcore Chest, terminals and machines to a Network Core. Order from a Network Crafter: tap an item, then Make an amount or Keep an amount stocked; the network plans the steps and sends each one to a machine on the cable. Order Processors run orders (each powered one runs one at a time). The On demand tab is gone, and the Network Terminal has a sort button."
 }
