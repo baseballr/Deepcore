@@ -48,7 +48,7 @@ ICON_HINTS = {
     "Clean Dust": "Clean Iron Dust", "Pure Dust": "Pure Iron Dust",
     "Reactor parts": "Reactor Casing", "Mining Suit": "Mining Suit Helmet",
     "Deepcore Drill": "Deepcore Drill", "Jetpack": "Jetpack",
-    "Lava Tanks": "Lava Tank",
+    "Tanks": "Tank",
 }
 
 COLORS = set("0123456789abcdef")

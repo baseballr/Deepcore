@@ -1,7 +1,7 @@
 {
-  "version": "4.48.0",
-  "file": "DeepcoreQuarry_v4.48.0.mcaddon",
+  "version": "4.48.1",
+  "file": "DeepcoreQuarry_v4.48.1.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "New: Lava Tanks. The Lava Tank holds 16 buckets of lava, the Steel Lava Tank 32 and the Deepcore Lava Tank 64, and the lava shows through the glass as it fills. Fill them with lava buckets, a touching Lava Pump, pipes, or a tank above (lava runs down). They keep every touching Magma Generator full, and an empty bucket comes back full. Mined or wrenched, a tank keeps its lava. A Steel or Deepcore Machine Upgrade makes a tank bigger in place, lava and all. New: the Lava Ender Tank (ender pearls, an eye of ender, obsidian, a Steel Lava Tank and an Advanced Circuit). Colour the three rings on its lid with dyes: every Ender Tank on the same colours shares 64 buckets of lava, in any dimension. Private to you unless you make it Public. All four are in the Deepcore Crafting Table and the Assembler."
+  "notes": "New: Tanks. The Tank holds 16 buckets of lava or water, the Steel Tank 32 and the Deepcore Tank 64 (one fluid at a time), and what it holds shows through the glass as it fills: glowing lava or blue water. Fill them with buckets, a touching Lava Pump (lava), pipes, or a tank above (it runs down). Lava tanks keep every touching Magma Generator full, and an empty bucket comes back full. Mined or wrenched, a tank keeps what it holds. A Steel or Deepcore Machine Upgrade makes a tank bigger in place, contents and all. New: the Ender Tank (ender pearls, an eye of ender, obsidian, a Steel Tank and an Advanced Circuit). Colour the three rings on its lid with dyes: every Ender Tank on the same colours shares 64 buckets of lava or water, in any dimension. Private to you unless you make it Public. All four are in the Deepcore Crafting Table and the Assembler. 4.48.1: tanks take water too and are named Tank, Steel Tank, Deepcore Tank and Ender Tank (4.48.0 tanks keep working)."
 }
