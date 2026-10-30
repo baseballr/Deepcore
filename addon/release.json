@@ -1,7 +1,7 @@
 {
-  "version": "4.49.1",
-  "file": "DeepcoreQuarry_v4.49.1.mcaddon",
+  "version": "4.49.2",
+  "file": "DeepcoreQuarry_v4.49.2.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "Tanks: a Tank holding lava or water now looks full of it in your inventory, and its tooltip only says how much it holds (the stray \"dqt:16\" line is gone; Ender Tank items likewise only show their colours). Also in this build (4.49.0): the Power Meter Block screen's Supply and Draw tabs scroll, one cell for every kind of machine on the network. And (4.48): Tanks and the Ender Tank (lava or water, 16/32/64 buckets; Ender Tanks share 64 buckets per dye colour)."
+  "notes": "Tanks: a Tank holding lava or water now looks full of it in your inventory, and its tooltip only says how much it holds (the stray \"dqt:16\" line is gone; Ender Tank items likewise only show their colours). Also in this build (4.49.0): the Power Meter Block screen's Supply and Draw tabs scroll, one cell for every kind of machine on the network. And (4.48): Tanks and the Ender Tank (lava or water, 16/32/64 buckets; Ender Tanks share 64 buckets per dye colour). 4.49.2: fixes the Power Meter's Supply and Draw lists drawing empty (and the collection_index errors in the content log)."
 }
