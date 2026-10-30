@@ -33,6 +33,20 @@ else
                 case "p":
                     <p>@((MarkupString)(b.Html ?? ""))</p>
                     break;
+                case "table":
+                    @((MarkupString)(b.Html ?? ""))
+                    break;
+                case "icons":
+                    <div class="tier-row">
+                        @foreach (var c in b.Rows?.FirstOrDefault() ?? new())
+                        {
+                            <div class="tier-tile">
+                                <Icon Src="@c.Icon" Name="@c.Name" Size="48" />
+                                <span>@c.Name</span>
+                            </div>
+                        }
+                    </div>
+                    break;
                 case "grid":
                     @if (!string.IsNullOrEmpty(b.Note) && b.Note != "Crafting table")
                     {

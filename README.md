@@ -26,6 +26,10 @@ On every push to `main`, `.github/workflows/deploy.yml`:
    (lowest and highest Minecraft Bedrock version it works on).
 3. Commit and push to `main`.
 
+Pages about tiers that the Guide Book doesn't have (the All tiers page, the Tiers section on every
+tiered machine, the tables on Machine tiers) live in `tools/tiers.py`, which the extractor adds to the
+Guide Book text. Its numbers come from the add-on's code, so update it when tiers change.
+
 The extractor stops the build if `release.json` and the pack's manifest disagree on the version.
 
 ## Running locally

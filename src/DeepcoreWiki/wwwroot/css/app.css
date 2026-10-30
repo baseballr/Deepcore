@@ -273,3 +273,17 @@ a.pill:hover { color: var(--primary); text-decoration: none; }
     .craft-grid { grid-template-columns: repeat(3, 38px); }
     .slot { width: 38px; height: 38px; }
 }
+
+/* Tier tables and icon rows (tools/tiers.py) */
+.table-wrap { overflow-x: auto; margin: 10px 0 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.wiki-table { border-collapse: collapse; width: 100%; font-size: .9rem; line-height: 1.4; }
+.wiki-table th, .wiki-table td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.wiki-table th { background: var(--surface-2); font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); white-space: nowrap; }
+.wiki-table tbody tr:last-child td { border-bottom: 0; }
+.wiki-table td:first-child { font-weight: 600; }
+.tier-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 12px; }
+.tier-tile { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 120px; padding: 10px 6px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); font-size: .82rem; font-weight: 600; text-align: center; }
+@media (max-width: 420px) {
+    .tier-row { gap: 8px; }
+    .tier-tile { width: calc(33.33% - 6px); box-sizing: border-box; font-size: .75rem; }
+}

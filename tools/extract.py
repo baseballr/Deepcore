@@ -18,6 +18,8 @@ import argparse, html, io, json, re, shutil, subprocess, zipfile
 from pathlib import Path
 from PIL import Image
 
+import tiers
+
 ROOT = Path(__file__).resolve().parent.parent
 WWW = ROOT / "src" / "DeepcoreWiki" / "wwwroot"
 VANILLA = ROOT / "tools" / "vanilla"
@@ -48,10 +50,15 @@ ICON_HINTS = {
     "Clean Dust": "Clean Iron Dust", "Pure Dust": "Pure Iron Dust",
     "Reactor parts": "Reactor Casing", "Mining Suit": "Mining Suit Helmet",
     "Deepcore Drill": "Deepcore Drill", "Jetpack": "Jetpack",
-    "Tanks": "Tank",
+    "Tanks": "Tank", "All tiers": "Deepcore Machine Casing",
 }
 
 COLORS = set("0123456789abcdef")
+
+# Entry name -> page href, filled in before the bodies are parsed, for [[links]] in the wiki-only text (tiers.py).
+LINKS = {}
+LINK = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
+bad_links = set()
 
 
 def slug(s):
@@ -165,7 +172,22 @@ def span_html(text):
         elif p:
             out.append(html.escape(p))
     out.extend("</span>" for _ in open_tags)
-    return "".join(out)
+    return LINK.sub(link_html, "".join(out))
+
+
+def link_html(m):
+    target, label = m.group(1), m.group(2) or m.group(1)
+    href = LINKS.get(html.unescape(target))
+    if not href:
+        bad_links.add(target)
+        return label
+    return f'<a href="{href}">{label}</a>'
+
+
+def table_html(rows):
+    head = "".join(f"<th>{span_html(c)}</th>" for c in rows[0])
+    body = "".join("<tr>" + "".join(f"<td>{span_html(c)}</td>" for c in r) + "</tr>" for r in rows[1:])
+    return f'<div class="table-wrap"><table class="wiki-table"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
 
 
 GRID_HEAD = re.compile(r"^(.*?)rows from the top(?: \(makes (\d+)\))?:\s*$")
@@ -187,6 +209,22 @@ def parse_body(body, entry_name, icon_for):
 
     while i < len(lines):
         line = lines[i]
+        if line.startswith("@icons "):
+            flush()
+            cells = [c.strip() for c in re.split(r"\s+\|\s+", line[7:])]
+            blocks.append({"t": "icons", "text": " ".join(cells),
+                           "rows": [[{"name": c, "icon": icon_for(c)} for c in cells]]})
+            i += 1
+            continue
+        if line.strip() == "@table":
+            flush()
+            rows = []
+            i += 1
+            while i < len(lines) and lines[i].strip():
+                rows.append([c.strip() for c in re.split(r"\s+\|\s+", lines[i].strip())])
+                i += 1
+            blocks.append({"t": "table", "html": table_html(rows)})
+            continue
         m = GRID_HEAD.match(line)
         if m:
             flush()
@@ -417,6 +455,8 @@ def main():
         return f"{single} ({sub})" if " " not in sub else sub
 
     guide = load_guide(pack)
+    for w in tiers.apply(guide):
+        print("Warning:", w)
     cats, recipes = [], []
     by_title = {c["title"]: c for c in guide}
     ordered = []
@@ -425,6 +465,9 @@ def main():
             if t in by_title:
                 ordered.append((group, by_title.pop(t)))
     ordered += [("More", c) for c in by_title.values()]
+    for _, c in ordered:
+        for e in c["entries"]:
+            LINKS.setdefault(e["name"], f"wiki/{slug(c['title'])}/{slug(e['name'])}")
 
     for group, c in ordered:
         cs = slug(c["title"])
@@ -487,6 +530,8 @@ def main():
           f"{len(names)} named icons")
     if missing:
         print("No icon for:", ", ".join(sorted(missing)))
+    if bad_links:
+        print("Warning: links to no page:", ", ".join(sorted(bad_links)))
 
 
 def lineup(pack, terrain, dest):
