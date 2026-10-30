@@ -1,7 +1,7 @@
 {
-  "version": "4.47.0",
-  "file": "DeepcoreQuarry_v4.47.0.mcaddon",
+  "version": "4.48.0",
+  "file": "DeepcoreQuarry_v4.48.0.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "Fix: the Deepcore Crafting Table now has every Deepcore recipe. The 41 blocks and items added since the table came out were missing from its recipe book: the Mining Suit and its modules (Fire Protection, Jetpack, Speed and more), Jetpacks, Drills, Portable Terminals, the reactor and matrix parts, Mining Portal blocks, Teleporter Pads, the Robit, the Chargepad, the Crate Link and the network blocks (Network Cable, Core, Terminal, Crafter, Deepcore Chest, Order Processor). They are on the Deepcore tab and in search, and new ones will be added automatically from now on. Also in this build (4.46): a Basic Item Vacuum, Chunk Loader, Mob Repeller or Lava Pump shows its Range slot as closed until it is Steel."
+  "notes": "New: Lava Tanks. The Lava Tank holds 16 buckets of lava, the Steel Lava Tank 32 and the Deepcore Lava Tank 64, and the lava shows through the glass as it fills. Fill them with lava buckets, a touching Lava Pump, pipes, or a tank above (lava runs down). They keep every touching Magma Generator full, and an empty bucket comes back full. Mined or wrenched, a tank keeps its lava. A Steel or Deepcore Machine Upgrade makes a tank bigger in place, lava and all. New: the Lava Ender Tank (ender pearls, an eye of ender, obsidian, a Steel Lava Tank and an Advanced Circuit). Colour the three rings on its lid with dyes: every Ender Tank on the same colours shares 64 buckets of lava, in any dimension. Private to you unless you make it Public. All four are in the Deepcore Crafting Table and the Assembler."
 }
