@@ -1,7 +1,7 @@
 {
-  "version": "4.49.0",
-  "file": "DeepcoreQuarry_v4.49.0.mcaddon",
+  "version": "4.49.1",
+  "file": "DeepcoreQuarry_v4.49.1.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "The Power Meter Block screen's Supply and Draw tabs now scroll: every kind of machine on the network gets its own cell (up to 24 power kinds and 48 machine kinds) instead of five and \"+N more kinds\". The list is only as long as what the network holds. Also in this build: Tanks and the Ender Tank from 4.48 (lava or water, 16/32/64 buckets; Ender Tanks share 64 buckets per dye colour)."
+  "notes": "Tanks: a Tank holding lava or water now looks full of it in your inventory, and its tooltip only says how much it holds (the stray \"dqt:16\" line is gone; Ender Tank items likewise only show their colours). Also in this build (4.49.0): the Power Meter Block screen's Supply and Draw tabs scroll, one cell for every kind of machine on the network. And (4.48): Tanks and the Ender Tank (lava or water, 16/32/64 buckets; Ender Tanks share 64 buckets per dye colour)."
 }
