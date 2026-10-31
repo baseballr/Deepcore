@@ -1,7 +1,7 @@
 {
-  "version": "4.53.0",
-  "file": "DeepcoreQuarry_v4.53.0.mcaddon",
+  "version": "4.51.3",
+  "file": "DeepcoreQuarry_v4.51.3.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "Items you put in a networked Deepcore Chest now move by themselves into a networked crate that already holds (or is locked to) the same item, while that crate has room. Also in 4.52.0: the Network Cable has a new look (black cable with green lights)."
+  "notes": "The Network Crafter has a Show all button next to Search: it clears the search and shows everything the network can make. Also in 4.51.2: finished orders leave the list after 5 seconds, and orders make charcoal from any log. 4.51.1: network orders use any wood, and Search works like the Deepcore Crafting Table's. 4.51.0: Assemblers work for network orders only."
 }
