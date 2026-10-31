@@ -1,13 +1,13 @@
 {
-  "version": "4.51.3",
-  "file": "DeepcoreQuarry_v4.51.3.mcaddon",
+  "version": "4.51.2",
+  "file": "DeepcoreQuarry_v4.51.2.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "The Network Crafter has a Show all button next to Search: it clears the search and shows everything the network can make. Also in 4.51.2: finished orders leave the list after 5 seconds, and orders make charcoal from any log. 4.51.1: network orders use any wood, and Search works like the Deepcore Crafting Table's. 4.51.0: Assemblers work for network orders only.",
-  "tag": "v4.51.3",
-  "download": "https://github.com/baseballr/Deepcore/releases/download/v4.51.3/DeepcoreQuarry_v4.51.3.mcaddon",
-  "releasePage": "https://github.com/baseballr/Deepcore/releases/tag/v4.51.3",
+  "notes": "Finished orders leave the Network Crafter's list: they show Done for 5 seconds (tap to clear at once) instead of offering to cancel. Orders can make charcoal from any log with an Electric Furnace on the network. Also in 4.51.1: network orders use any wood (any planks, slabs, logs), and the Crafter's Search works like the Deepcore Crafting Table's. 4.51.0: Assemblers work for network orders only.",
+  "tag": "v4.51.2",
+  "download": "https://github.com/baseballr/Deepcore/releases/download/v4.51.2/DeepcoreQuarry_v4.51.2.mcaddon",
+  "releasePage": "https://github.com/baseballr/Deepcore/releases/tag/v4.51.2",
   "allReleases": "https://github.com/baseballr/Deepcore/releases",
-  "sizeBytes": 1628349,
+  "sizeBytes": 1628225,
   "date": "2026-10-31"
 }
