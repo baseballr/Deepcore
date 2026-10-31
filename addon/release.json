@@ -1,7 +1,7 @@
 {
-  "version": "4.51.2",
-  "file": "DeepcoreQuarry_v4.51.2.mcaddon",
+  "version": "4.52.0",
+  "file": "DeepcoreQuarry_v4.52.0.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "Finished orders leave the Network Crafter's list: they show Done for 5 seconds (tap to clear at once) instead of offering to cancel. Orders can make charcoal from any log with an Electric Furnace on the network. Also in 4.51.1: network orders use any wood (any planks, slabs, logs), and the Crafter's Search works like the Deepcore Crafting Table's. 4.51.0: Assemblers work for network orders only."
+  "notes": "The Network Cable has a new look: a black cable with green data lights, so it no longer looks like the Diamond Power Cable. Same block, nothing to replace in your world. Also in 4.51.2: finished orders leave the Network Crafter's list, charcoal orders from any log; 4.51.1: network orders use any wood; 4.51.0: Assemblers work for network orders only."
 }
