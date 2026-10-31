@@ -1,13 +1,13 @@
 {
-  "version": "4.51.1",
-  "file": "DeepcoreQuarry_v4.51.1.mcaddon",
+  "version": "4.51.2",
+  "file": "DeepcoreQuarry_v4.51.2.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "Network orders use any wood: a recipe that takes any planks, slabs, logs, wool or coal uses whatever kind storage has, and crafts more from what it has (oak logs into oak planks) instead of asking for bamboo. Orders also know every crafting table recipe now (slabs, stone bricks and more). The Network Crafter's Search button works like the Deepcore Crafting Table's: the screen closes, you type a name, and tapping the Crafter again shows the results. Also in 4.51.0: Assemblers work for network orders only (no pipes, no recipe grid).",
-  "tag": "v4.51.1",
-  "download": "https://github.com/baseballr/Deepcore/releases/download/v4.51.1/DeepcoreQuarry_v4.51.1.mcaddon",
-  "releasePage": "https://github.com/baseballr/Deepcore/releases/tag/v4.51.1",
+  "notes": "Finished orders leave the Network Crafter's list: they show Done for 5 seconds (tap to clear at once) instead of offering to cancel. Orders can make charcoal from any log with an Electric Furnace on the network. Also in 4.51.1: network orders use any wood (any planks, slabs, logs), and the Crafter's Search works like the Deepcore Crafting Table's. 4.51.0: Assemblers work for network orders only.",
+  "tag": "v4.51.2",
+  "download": "https://github.com/baseballr/Deepcore/releases/download/v4.51.2/DeepcoreQuarry_v4.51.2.mcaddon",
+  "releasePage": "https://github.com/baseballr/Deepcore/releases/tag/v4.51.2",
   "allReleases": "https://github.com/baseballr/Deepcore/releases",
-  "sizeBytes": 1627863,
-  "date": "2026-10-30"
+  "sizeBytes": 1628225,
+  "date": "2026-10-31"
 }
