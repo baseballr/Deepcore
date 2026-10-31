@@ -1,7 +1,7 @@
 {
-  "version": "4.56.0",
-  "file": "DeepcoreQuarry_v4.56.0.mcaddon",
+  "version": "4.57.0",
+  "file": "DeepcoreQuarry_v4.57.0.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "The Network Crafter has a Show all button next to Search: it clears the search and shows everything the network can make. Also in 4.55.0: Network Terminal: every item shows how many the whole network holds right on its slot, like a crate's front (8.1k); point at it for the exact number. Taking one still gives a stack. Also in 4.53.0: items you put in a networked Deepcore Chest now move by themselves into a networked crate that already holds (or is locked to) the same item, while that crate has room. Also in 4.52.0: the Network Cable has a new look (black cable with green lights)."
+  "notes": "Network Terminal search works like the crafting table's and the Network Crafter's: tap Search, type a name (and pick the sort) in the box, then tap the terminal again for the results. Show all clears the search. Also in 4.56.0: the Network Crafter has a Show all button next to Search: it clears the search and shows everything the network can make. Also in 4.55.0: Network Terminal: every item shows how many the whole network holds right on its slot, like a crate's front (8.1k); point at it for the exact number. Taking one still gives a stack. Also in 4.53.0: items you put in a networked Deepcore Chest now move by themselves into a networked crate that already holds (or is locked to) the same item, while that crate has room. Also in 4.52.0: the Network Cable has a new look (black cable with green lights)."
 }
