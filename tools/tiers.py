@@ -26,7 +26,7 @@ TIERS = ["Basic", "Steel", "Deepcore"]
 SAVED = {3: "45%", 4: "60%", 5: "75%"}  # Efficiency Chips: 15% less power each
 
 LANED = ["Electric Furnace", "Crusher", "Plate Press", "Gear Press", "Wire Mill", "Washer", "Purifier", "Sifter"]
-ONE_LANE = ["Induction Smelter", "Assembler"]
+ONE_LANE = ["Induction Smelter", "Assembler", "Obsidian Generator"]
 RANGED = {  # entry: (what Range Chips raise, value at Basic / Steel / Deepcore)
     "Item Vacuum": ("Largest radius", ["16 blocks", "20 blocks (+4 per chip)", "24 blocks"]),
     "Mob Repeller": ("Largest radius", ["32 blocks", "40 blocks (+8 per chip)", "48 blocks"]),
@@ -111,7 +111,7 @@ Machine | Basic | Steel | Deepcore | A higher tier also gives
 [[Electric Furnace]], [[Crusher]], [[Plate Press]], [[Gear Press]], [[Wire Mill]], [[Sifter]] | 6 slots: 3 Speed, 3 Efficiency | 8 slots: 4 Speed, 4 Efficiency | 10 slots: 5 Speed, 5 Efficiency | Lanes: 1, 3, 5 stacks at once
 [[Washer]] | 6 slots | 8 slots | 10 slots | Lanes 1, 3, 5. Bonus dust 50%, 50%, 67%
 [[Purifier]] | 6 slots | 8 slots | 10 slots | Lanes 1, 3, 5. Bonus dust 33%, 50%, 50%
-[[Induction Smelter]], [[Assembler]] | 6 slots: 3 Speed, 3 Efficiency | 8 slots: 4 Speed, 4 Efficiency | 10 slots: 5 Speed, 5 Efficiency | Chip slots only (one lane)
+[[Induction Smelter]], [[Assembler]], [[Obsidian Generator]] | 6 slots: 3 Speed, 3 Efficiency | 8 slots: 4 Speed, 4 Efficiency | 10 slots: 5 Speed, 5 Efficiency | Chip slots only (one lane)
 [[Item Vacuum]], [[Mob Repeller]], [[Chunk Loader]], [[Lava Pump]] | 3 slots: 3 Efficiency | 5 slots: 4 Efficiency, 1 Range | 7 slots: 5 Efficiency, 2 Range | A bigger radius or reach from Range Chips
 [[Tesseract]] | 6 slots | 8 slots | 10 slots | Up to 6,000 power and 96 items a second
 
