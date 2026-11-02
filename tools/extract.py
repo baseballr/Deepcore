@@ -194,12 +194,44 @@ GRID_HEAD = re.compile(r"^(.*?)rows from the top(?: \(makes (\d+)\))?:\s*$")
 ROW = re.compile(r"^§7(\d+):§r\s*(.*)$")
 H2 = re.compile(r"^§6(.+?)§r$")
 H3 = re.compile(r"^§e(.+?)§r$")
+# Other ways the guide book writes recipes. The wiki turns each into a grid card.
+# "§6Recipe§r (makes 8)" heading, with rows below it.
+H2_MAKES = re.compile(r"^§6(Recipes?)§r \(makes (\d+)\)\s*$")
+# "§eReactor Glass§r (makes 4):" with rows below it, or with the recipe in words after the colon.
+SUB_HEAD = re.compile(r"^§e(.+?)§r(?: \(makes (\d+)\))?:\s*(.*)$")
+# "Crafting table, any order: Book + Iron Ingot" / "Crafting table, one column: A, B, C".
+TABLE_LINE = re.compile(r"^Crafting table, (any order|one column):\s*(.+)$")
+# Tier upgrade lines: "Copper + Iron Ingot = Iron".
+UPGRADE_LINE = re.compile(r"^([A-Z][\w ]*?) \+ (.+?) = ([A-Z][\w ]*)$")
+# Recipe prose that is still left as text after parsing (warned about, so new pages get fixed).
+PROSE_RECIPE = re.compile(r"in the corners|on the sides|top and bottom|left and right|rows of|Crafting table,", re.I)
+prose_left = []
 
 
-def parse_body(body, entry_name, icon_for):
+def parse_body(body, entry_name, icon_for, recipe_for=lambda name, entry: None):
+    """recipe_for(name, entry) -> (rows, makes, shapeless, output name) from the pack's recipe files, or None."""
     lines = body.split("\n")
     blocks, para, i = [], [], 0
     sub = None
+
+    def mk_cells(names):
+        names = ["" if c in ("-", "(empty)") else c for c in names]
+        return [{"name": c, "icon": icon_for(c) if c else None} for c in names]
+
+    def read_rows(j):
+        rows = []
+        while j < len(lines) and ROW.match(lines[j]):
+            rows.append(mk_cells([c.strip() for c in ROW.match(lines[j]).group(2).split("|")]))
+            j += 1
+        return rows, j
+
+    def pack_grid(name, makes_text):
+        r = recipe_for(name, entry_name)
+        if not r:
+            return None
+        rows, makes, shapeless, out = r
+        return {"t": "grid", "title": out, "note": "Any order" if shapeless else "",
+                "makes": int(makes_text or makes), "rows": [mk_cells(row) for row in rows]}
 
     def flush():
         nonlocal para
@@ -230,17 +262,68 @@ def parse_body(body, entry_name, icon_for):
             flush()
             rows = []
             i += 1
-            while i < len(lines) and ROW.match(lines[i]):
-                cells = [c.strip() for c in ROW.match(lines[i]).group(2).split("|")]
-                rows.append([{"name": "" if c == "-" else c, "icon": None if c == "-" else icon_for(c)}
-                             for c in cells])
-                i += 1
+            rows, i = read_rows(i)
             prefix = m.group(1).strip().rstrip(",")
+            title = sub or entry_name
+            named = re.match(r"^§e(.+?)§r$", prefix)  # "§eJetpack§r, rows from the top:"
+            if named:
+                title, prefix = named.group(1), ""
             if blocks and blocks[-1]["t"] == "h3" and blocks[-1]["text"] == sub:
                 blocks.pop()  # the grid card shows the subheading itself
-            blocks.append({"t": "grid", "title": sub or entry_name, "note": prefix,
+            blocks.append({"t": "grid", "title": title, "note": prefix,
                            "makes": int(m.group(2) or 1), "rows": rows})
             continue
+        mh = H2_MAKES.match(line)
+        if mh and i + 1 < len(lines) and ROW.match(lines[i + 1]):
+            flush()
+            rows, i = read_rows(i + 1)
+            blocks.append({"t": "h2", "text": mh.group(1)})
+            sub = None
+            blocks.append({"t": "grid", "title": entry_name, "note": "", "makes": int(mh.group(2)), "rows": rows})
+            continue
+        ms = SUB_HEAD.match(line)
+        if ms:
+            name, makes_text, rest = ms.group(1), ms.group(2), ms.group(3).strip()
+            if not rest and i + 1 < len(lines) and ROW.match(lines[i + 1]):
+                flush()
+                rows, i = read_rows(i + 1)
+                blocks.append({"t": "grid", "title": name, "note": "", "makes": int(makes_text or 1), "rows": rows})
+                continue
+            g = pack_grid(name, makes_text) if rest else None
+            if g:
+                flush()
+                blocks.append(g)
+                i += 1
+                continue
+        mt = TABLE_LINE.match(line)
+        if mt:
+            g = pack_grid(sub or entry_name, None)
+            if g:
+                flush()
+                if blocks and blocks[-1]["t"] == "h3" and blocks[-1]["text"] == sub:
+                    blocks.pop()
+                blocks.append(g)
+                i += 1
+                continue
+        mu = UPGRADE_LINE.match(line)
+        if mu:
+            g = pack_grid(mu.group(3), None)
+            if g:
+                flush()
+                # The line above them already says "in any order".
+                g["note"] = f"{mu.group(2)} all work" if " or " in mu.group(2) else ""
+                blocks.append(g)
+                i += 1
+                continue
+        if ROW.match(line):  # rows with no "rows from the top:" line above them
+            flush()
+            rows, i = read_rows(i)
+            if blocks and blocks[-1]["t"] == "h3" and blocks[-1]["text"] == sub:
+                blocks.pop()
+            blocks.append({"t": "grid", "title": sub or entry_name, "note": "", "makes": 1, "rows": rows})
+            continue
+        if PROSE_RECIPE.search(line) and not line.startswith("§6"):
+            prose_left.append(f"{entry_name}: {re.sub(r'§.', '', line)[:90]}")
         m2, m3 = H2.match(line), H3.match(line)
         if m2:
             flush()
@@ -316,6 +399,7 @@ def main():
             lang[k.strip()] = v.strip()
 
     names = {}  # display name -> icon file
+    id_names = {}  # dq:identifier -> display name
     things = {"blocks": 0, "items": 0}
 
     def save(img, ident):
@@ -345,9 +429,11 @@ def main():
         things["items"] += 1
         path = save(flat_icon(img), ident)
         placer = (c.get("minecraft:block_placer") or {}).get("block")
-        if placer:
+        if placer and "dyed" not in ident:  # dyed items place the plain block with a color state
             item_icons.setdefault(placer, path)
         nm = clean_name(lang.get(disp, disp) if disp.startswith(("item.", "tile.")) else disp)
+        if "dyed" not in ident:
+            id_names.setdefault(ident, nm)
         if "dyed" not in ident:
             names.setdefault(nm, path)
 
@@ -360,6 +446,8 @@ def main():
         disp = disp or lang.get(f"tile.{ident}.name", "")
         if not disp:
             continue
+        if "dyed" not in ident:
+            id_names.setdefault(ident, clean_name(disp))
         things["blocks"] += 1
         geo = c.get("minecraft:geometry")
         geo = geo if isinstance(geo, str) else (geo or {}).get("identifier", "")
@@ -382,7 +470,7 @@ def main():
             img = mt("north", "*", "up")
             if img:
                 path = save(flat_icon(img), ident)
-        if path:
+        if path and "dyed" not in ident:  # a dyed cable or pipe is not the tier's icon
             names.setdefault(clean_name(disp), path)
 
     # Vanilla ingredient icons.
@@ -448,12 +536,14 @@ def main():
         if clean_name(sub) in names:
             return sub
         single = entry[:-1] if entry.endswith("s") else entry
-        for cand in (f"{sub} {single}", f"{sub} {entry}", f"{sub} {single.split()[-1]}",
+        for cand in (f"{sub} {single}", f"{sub} {entry}", f"{sub} {single.split()[-1]}", f"{entry} {sub}",
+                     f"{sub} {single.split()[-1].title()}",
                      f"{sub.removesuffix(' pipe')} Item Pipe"):
             if clean_name(cand) in names:
                 return cand
         return f"{single} ({sub})" if " " not in sub else sub
 
+    recipe_for = recipe_index(pack, id_names, names)
     guide = load_guide(pack)
     for w in tiers.apply(guide):
         print("Warning:", w)
@@ -474,7 +564,7 @@ def main():
         entries = []
         for e in c["entries"]:
             es = slug(e["name"])
-            blocks = parse_body(e["body"], e["name"], icon_for)
+            blocks = parse_body(e["body"], e["name"], icon_for, recipe_for)
             icon = entry_icon(e["name"])
             for b in blocks:
                 if b["t"] == "grid":
@@ -532,6 +622,68 @@ def main():
         print("No icon for:", ", ".join(sorted(missing)))
     if bad_links:
         print("Warning: links to no page:", ", ".join(sorted(bad_links)))
+    if prose_left:
+        print("Warning: recipe text the wiki could not draw as a grid:\n  " + "\n  ".join(prose_left))
+
+
+VANILLA_NAMES = {"minecraft:redstone": "Redstone Dust", "minecraft:ender_eye": "Eye of Ender",
+                 "minecraft:magma": "Magma Block", "minecraft:stonecutter_block": "Stonecutter",
+                 "minecraft:quartz": "Nether Quartz", "minecraft:lapis_block": "Lapis Block",
+                 "minecraft:diamond_block": "Diamond Block", "minecraft:iron_block": "Iron Block",
+                 "minecraft:emerald_block": "Emerald Block", "minecraft:redstone_block": "Redstone Block"}
+
+
+def recipe_index(pack, id_names, names):
+    """Crafting table recipes from DQ_BP/recipes, looked up by the output's display name."""
+    def ing_name(v):
+        if isinstance(v, str):
+            v = {"item": v}
+        if "tag" in v:
+            return "Any " + v["tag"].split(":")[-1].replace("_", " ").title()
+        ident = v.get("item", "")
+        if ident in id_names:
+            return id_names[ident]
+        if ident in VANILLA_NAMES:
+            return VANILLA_NAMES[ident]
+        return ident.split(":")[-1].replace("_", " ").title()
+
+    by_name = {}
+    for f in pack.glob("DQ_BP/recipes/"):
+        d = pack.json(f)
+        for kind, r in d.items():
+            if kind not in ("minecraft:recipe_shaped", "minecraft:recipe_shapeless"):
+                continue
+            if "crafting_table" not in r.get("tags", []):
+                continue
+            res = r["result"][0] if isinstance(r["result"], list) else r["result"]
+            res = {"item": res} if isinstance(res, str) else res
+            out = id_names.get(res.get("item"))
+            if not out:
+                continue
+            makes = int(res.get("count", 1))
+            if kind.endswith("shaped"):
+                key = r["key"]
+                rows = [[ing_name(key[ch]) if ch in key else "" for ch in line] for line in r["pattern"]]
+                by_name.setdefault(out, (rows, makes, False, out))
+            else:
+                flat = []
+                for ing in r["ingredients"]:
+                    flat += [ing_name(ing)] * int(ing.get("count", 1) if isinstance(ing, dict) else 1)
+                rows = [flat[k:k + 3] for k in range(0, len(flat), 3)]
+                by_name.setdefault(out, (rows, makes, True, out))
+
+    lower = {k.lower(): v for k, v in by_name.items()}
+
+    def recipe_for(name, entry):
+        """'Helmet' under 'Mining Suit' -> Mining Suit Helmet; 'Speed' under 'Suit modules' -> Speed Module."""
+        single = entry[:-1] if entry.endswith("s") else entry
+        for cand in (f"{entry} {name}", f"{single} {name}", f"{name} {single}",
+                     f"{name} {single.split()[-1]}", name):
+            if clean_name(cand).lower() in lower:
+                return lower[clean_name(cand).lower()]
+        return None
+
+    return recipe_for
 
 
 def lineup(pack, terrain, dest):
