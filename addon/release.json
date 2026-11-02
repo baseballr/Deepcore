@@ -1,7 +1,7 @@
 {
-  "version": "4.67.0",
-  "file": "DeepcoreQuarry_v4.67.0.mcaddon",
+  "version": "4.68.0",
+  "file": "DeepcoreQuarry_v4.68.0.mcaddon",
   "minecraftMin": "26.30",
   "minecraftMax": "26.60",
-  "notes": "Tanks that touch are now one big tank. Tanks, Steel Tanks and Deepcore Tanks side by side or stacked (any mix) share what they hold: three Deepcore Tanks hold 192 buckets, and a pipe, Lava Pump, Magma Generator or Obsidian Generator touching any of them reaches all of it. Stacks fill from the bottom, each tank still shows its own share through its glass, and a mined tank takes its own share with it. A tank holding the other fluid (lava next to water) stays on its own, and Ender Tanks never join. Existing tanks keep what they hold."
+  "notes": "The network no longer fills empty crates. Items you shift-click or drop into the Network Terminal, Deposit, pipe in, or that orders make go into crates already holding (or locked to) that item, then into Deepcore Chests; an empty crate stays empty until you tap it with an item or lock it. If there is no room, the terminal gives the items back. Also in 4.67.0: Tanks that touch are now one big tank. Tanks, Steel Tanks and Deepcore Tanks side by side or stacked (any mix) share what they hold: three Deepcore Tanks hold 192 buckets, and a pipe, Lava Pump, Magma Generator or Obsidian Generator touching any of them reaches all of it. Stacks fill from the bottom, each tank still shows its own share through its glass, and a mined tank takes its own share with it. A tank holding the other fluid (lava next to water) stays on its own, and Ender Tanks never join. Existing tanks keep what they hold."
 }
