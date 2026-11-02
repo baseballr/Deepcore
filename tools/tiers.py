@@ -32,6 +32,7 @@ RANGED = {  # entry: (what Range Chips raise, value at Basic / Steel / Deepcore)
     "Mob Repeller": ("Largest radius", ["32 blocks", "40 blocks (+8 per chip)", "48 blocks"]),
     "Chunk Loader": ("Largest area", ["7 x 7 chunks", "9 x 9 chunks (+1 ring per chip)", "11 x 11 chunks"]),
     "Lava Pump": ("Reach", ["8 blocks", "12 blocks (+4 per chip)", "16 blocks"]),
+    "Mob Grinder": ("Area in front", ["1 x 1 block, 2 high", "5 x 5, 4 high", "9 x 9, 6 high"]),
 }
 BONUS = {"Washer": ["50%", "50%", "67%"], "Purifier": ["33%", "50%", "50%"]}
 
@@ -112,7 +113,7 @@ Machine | Basic | Steel | Deepcore | A higher tier also gives
 [[Washer]] | 6 slots | 8 slots | 10 slots | Lanes 1, 3, 5. Bonus dust 50%, 50%, 67%
 [[Purifier]] | 6 slots | 8 slots | 10 slots | Lanes 1, 3, 5. Bonus dust 33%, 50%, 50%
 [[Induction Smelter]], [[Assembler]], [[Obsidian Generator]] | 6 slots: 3 Speed, 3 Efficiency | 8 slots: 4 Speed, 4 Efficiency | 10 slots: 5 Speed, 5 Efficiency | Chip slots only (one lane)
-[[Item Vacuum]], [[Mob Repeller]], [[Chunk Loader]], [[Lava Pump]] | 3 slots: 3 Efficiency | 5 slots: 4 Efficiency, 1 Range | 7 slots: 5 Efficiency, 2 Range | A bigger radius or reach from Range Chips
+[[Item Vacuum]], [[Mob Repeller]], [[Chunk Loader]], [[Lava Pump]], [[Mob Grinder]] | 3 slots: 3 Efficiency | 5 slots: 4 Efficiency, 1 Range | 7 slots: 5 Efficiency, 2 Range | A bigger radius, reach or area from Range Chips
 [[Tesseract]] | 6 slots | 8 slots | 10 slots | Up to 6,000 power and 96 items a second
 
 §6Getting a Steel or Deepcore machine§r
@@ -134,7 +135,7 @@ Every machine that takes chips is Basic when crafted. Use a [[Steel Machine Upgr
 §6Everything with tiers§r
 @table
 What | Tiers | What a higher tier gives | How to move up
-[[Machine tiers|Machines]] (15 kinds) and the [[Tesseract]] | Basic, Steel, Deepcore | 2 more chip slots; lanes and bonus dust on ore machines | A Machine Upgrade on the placed machine
+[[Machine tiers|Machines]] (16 kinds) and the [[Tesseract]] | Basic, Steel, Deepcore | 2 more chip slots; lanes and bonus dust on ore machines | A Machine Upgrade on the placed machine
 [[Tanks]] | Tank, Steel Tank, Deepcore Tank | Holds 16, 32, 64 buckets | A Machine Upgrade on the placed tank, or craft around the smaller tank
 [[Quarry Controllers]] | Basic, Reinforced, Deepcore | Dig area up to 12 x 12, 24 x 24, 36 x 36; 3, 6, 10 chip slots; 2, 4, 6 blocks a second | Craft the bigger controller
 [[Deep Storage Crates]] | Steel, Hardened, Deepcore | Holds 8,192, 32,768, 131,072 of one item | A Hardened Casing on a Steel Crate, a Deepcore Casing on a Hardened one (keeps what it holds)
@@ -150,7 +151,7 @@ What | Tiers | What a higher tier gives | How to move up
 [[Teleporter Pad]] | Teleporter Pad, Deepcore Teleporter Pad | Reaches pads in its own dimension, or in every dimension | Craft around a Teleporter Pad
 
 §6Chips and tiers§r
-Speed and Efficiency Chips fit 3 to a Basic machine, 4 to a Steel one and 5 to a Deepcore one (see [[Speed Chip]] and [[Efficiency Chip]]). Range Chips fit 3 to a quarry controller, and 1 or 2 to a Steel or Deepcore Item Vacuum, Mob Repeller, Chunk Loader or Lava Pump (see [[Range Chip]]). Quarry controllers have their own chip slots and take no Machine Upgrades."""
+Speed and Efficiency Chips fit 3 to a Basic machine, 4 to a Steel one and 5 to a Deepcore one (see [[Speed Chip]] and [[Efficiency Chip]]). Range Chips fit 3 to a quarry controller, and 1 or 2 to a Steel or Deepcore Item Vacuum, Mob Repeller, Chunk Loader, Lava Pump or Mob Grinder (see [[Range Chip]]). Quarry controllers have their own chip slots and take no Machine Upgrades."""
 
 
 def apply(guide):
