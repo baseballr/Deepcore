@@ -1,0 +1,16 @@
+{
+  "format_version": "1.10.0",
+  "render_controllers": {
+    "controller.render.ee_dq_icons": {
+      "arrays": {
+        "textures": {
+          "Array.icon": ["Texture.ruby", "Texture.ruby", "Texture.essence_dust"]
+        }
+      },
+      "geometry": "Geometry.default",
+      "materials": [{ "*": "Material.default" }],
+      "textures": ["Array.icon[q.property('dq:icon')]"],
+      "part_visibility": [{ "*": "q.property('dq:icon') > 0" }]
+    }
+  }
+}

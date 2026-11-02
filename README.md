@@ -6,6 +6,11 @@ item pipes, crates, gear and a mining dimension.
 **Wiki:** https://baseballr.github.io/Deepcore/
 **Download:** the [latest release](https://github.com/baseballr/Deepcore/releases/latest).
 
+## For add-on makers
+
+Other add-ons can send Deepcore recipes, ores and crate pictures with script events: see
+[docs/addon-api.md](docs/addon-api.md).
+
 ## How the wiki is built
 
 The wiki is a Blazor WebAssembly site in `src/DeepcoreWiki`. Its pages are not written by hand:

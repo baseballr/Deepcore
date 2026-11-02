@@ -1,0 +1,15 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "ee:dq_icons",
+      "materials": { "default": "entity_alphatest" },
+      "textures": {
+        "ruby": "textures/items/ruby",
+        "essence_dust": "textures/items/essence_dust"
+      },
+      "geometry": { "default": "geometry.dq_crate_icon" },
+      "render_controllers": ["controller.render.ee_dq_icons"]
+    }
+  }
+}
