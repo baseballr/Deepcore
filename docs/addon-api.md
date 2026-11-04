@@ -13,6 +13,7 @@ world.afterEvents.worldLoad.subscribe(() => {
   system.sendScriptEvent("dq:add_recipe", JSON.stringify([ /* recipes */ ]));
   system.sendScriptEvent("dq:add_ore", JSON.stringify([ /* ores */ ]));
   system.sendScriptEvent("dq:add_icon", JSON.stringify({ /* crate pictures */ }));
+  system.sendScriptEvent("dq:add_smelt", JSON.stringify([ /* furnace recipes */ ]));
 });
 ```
 
@@ -21,6 +22,8 @@ Each event takes one object or a list of them. Anything Deepcore refuses is writ
 
 Deepcore's own `dq:` items can't be changed with these events. `dq:add_ore` and `dq:add_icon` also refuse `minecraft:`
 ids, so use them only for your own add-on's blocks and items.
+
+Some things need no script at all: see [Item tags](#item-tags-food-in-pipe-filters-since-4720).
 
 ## dq:add_recipe: crafting recipes (since 4.61.0)
 
@@ -88,3 +91,47 @@ Rules:
   you send the event again.
 - If a number is outside your `dq:icon` range, that one item shows **?** and the content log says so.
 - A picture is 16 x 16, the same size as an inventory icon, so your item textures work as they are.
+
+## dq:add_smelt: Electric Furnace recipes (since 4.72.0)
+
+Deepcore's Electric Furnace has its own recipe list and does not use the game's furnace recipes. After you send a
+smelt, the Electric Furnace cooks it, the Robit smelts it, On demand furnaces can keep it stocked and network orders
+can make it.
+
+```json
+{ "in": "minecraft:carrot", "out": "rc:roasted_carrot", "filter": "#rawfood" }
+```
+
+| Field | Meaning |
+| --- | --- |
+| `in` | The item that goes in (one in, one out). It can be a `minecraft:` item |
+| `out` | The item it smelts into |
+| `filter` | A pipe filter category, or a list of them, that `in` also joins (optional) |
+
+`filter` takes `#ores`, `#raw`, `#gems`, `#stone`, `#soil`, `#wood`, `#rawfood`, `#cooked` or `#ingots`. Use it for
+vanilla items you give a new furnace use, because you can't tag a vanilla item. With the example above, a pipe set to
+`[Raw food]` sends carrots to the furnace only while your add-on is installed.
+
+Rules:
+
+- Items Deepcore's furnace already smelts keep Deepcore's recipe, and the first add-on to send a smelt for an `in` keeps it.
+- `dq:` items can't be `in` or `out`.
+- `out` must be an item that exists in the world.
+
+## Item tags: food in pipe filters (since 4.72.0)
+
+Your own items can join Deepcore's `[Raw food]` and `[Cooked food]` pipe filter categories with an item tag. This
+needs no script and does nothing when Deepcore is not installed.
+
+```json
+"components": {
+  "minecraft:tags": { "tags": ["dq:cooked_food"] }
+}
+```
+
+| Tag | Pipe filter category |
+| --- | --- |
+| `dq:raw_food` | `[Raw food]` |
+| `dq:cooked_food` | `[Cooked food]` |
+
+A tag only sorts the item. To make the Electric Furnace cook your raw food, also send `dq:add_smelt`.
